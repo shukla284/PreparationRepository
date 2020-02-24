@@ -5,7 +5,7 @@ using namespace std;
 /*
 
 Author : Shivam Shukla
-Description : 
+Description : Intersection of Two Arrays
 */
 
 
