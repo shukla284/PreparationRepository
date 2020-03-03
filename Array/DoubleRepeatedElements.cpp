@@ -48,6 +48,18 @@ pair<int,int> getDoubleRepeatedElements(vector<int>& a){
     return res;
 }
 
+pair<int,int> getRepeatedElements(vector<int>& a){
+    vector<int> ans;
+
+    for(int i = 0; i < a.size(); i++)
+       if (a[abs(a[i])] > 0)
+       	   a[abs(a[i])] = -a[abs(a[i])];
+       else
+           ans.push_back(abs(a[abs(a[i])]));
+
+    return make_pair(ans[0], ans[1]);
+}
+
 int main(int argc,char** argv){
     
     freopen("input.txt","r",stdin);
@@ -61,7 +73,7 @@ int main(int argc,char** argv){
     for(int i = 0; i < n; i++)
     	 cin >> a[i];
 
-    auto res = getDoubleRepeatedElements(a);
+    auto res = getRepeatedElements(a);
     cout << res.first << " " << res.second << endl;
 
     /*code ends here*/
