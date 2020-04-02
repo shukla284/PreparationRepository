@@ -43,7 +43,7 @@ int main(int argc,char** argv){
 
     for(auto& i : mat)
     	 for (int& j : i)
-    	 	 cin >> j;
+    	 	 cin >> j ;
 
     rotateMatrix(mat);
 
