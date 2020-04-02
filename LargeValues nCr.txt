@@ -1,0 +1,57 @@
+The thing to compute is if provided as nCr such that it can be computed for the larger numbers then we need to have the traversing to the r which may be silightly lower as compared to the n (which can be of order 1e9 like sth) which going through the single iteration will lead to the TLE verdict which would not be as better option to go with.
+
+So the solution is to consider some lower limit in order to better compute the results with the weaker test cases it doesn't matters at all which we want to consider like C(n, (n - r)) or C(n, r) 
+
+
+So a simple optimization is to begin with is to compute the shorter or the better of them that is if the value of (n - r) < r then, we will have the better chances with the (n - r) which is better thing to consider in case of the inverse relation we will try to iterate till the value of (n - r).
+
+So first important thing is to know what is the value of C(n, r) which can simply be stated as n! / r! . (n - r)!
+
+Therefore we can serailly compute it using the value till the r since the numerator will be consisting of 
+
+n.(n - 1).(n - 2).(n - 3)...........(n - r + 1)
+
+which can be computed with the iteration like : 
+
+for (int i = 0; i < r; i++)
+   res *= (n - i);
+
+which will give the value of the numerator taking mod will get it into the bounds of MOD (1e9 + 7) therefore this is pretty useful to consider about the things like how we will manage to get the result of the mod along with that , for that a well specified macro 
+
+
+template <typename t> t mul_mod(t a, t b , t m) {
+	 return ( (a % m) * (b % m) )  % m;
+}   
+
+
+Therefore a series computation for that will suffice, 
+
+computeNumerator(int n, int r) {
+	int64_t res;
+	for (int i = 0; i < r; i++)
+	   res = mul_mod<int64_t> (res, (n - i), MOD);
+	return res;   
+}
+
+
+But now onwards we have to manage an important thing that division is happening within the computation of C(n, r) which can be easily computed using the inverse modulus concept as well. 
+
+Now consider at a moment we are provided with the value of the numerator or the denominator like thing to include 
+
+
+inverseModulus(int b, int m) {
+	return power_modulus(b, (m - 2), m);
+}
+
+int64_t power_modulus(int64_t a, int64_t b,int64_t m) {
+     int64_t res = 1;
+     while (b) {
+        if (b & 1)
+            multiply_modulus(res, a, m), a = multiply_modulus(a, a, m);
+        b >>= 1;    
+     }
+    return res;
+}
+
+So the thing can be easily computed for the larger number of n but at the same time with the value like 1e5 - 1e7 for the value of r can be used for the caculation of the value of C(n, r)
+
