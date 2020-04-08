@@ -1,0 +1,44 @@
+Sliding Window Technique
+
+In one of the problems that I encountered that's somewhat naive was about finding the number of length k subarrays that are having the sum as particular quanity.
+
+For example, it could be asked that finding the number of subarrays that are having the sum as k. This is one of the points where the sliding window concept puts itself into the action.
+
+This is one of the beautiful approaches that are used to solve the problems. Sliding window over the array that move continously over the array. In one step we discard the previous element of the window and add the next element that is incoming window. 
+
+This is usual case with the sliding window rule, the first element of this window becomes outgoing element from the current window and last next element in array becomes the next incoming element into the window.
+
+The sum of the subarray is calculated in O(1) except the first one, which is O(size of window). The overall number of such subarrays is calculated as O(n - size of windows).
+
+One of the use cases that I encountered is finding the number of subarrays that are having the sum greater or smaller than some of the quantities i.e, k. In this the sliding window size isn't fixed but its concept of escape of the last element and introducing the next element is beautifully expoilted in this problem.
+
+
+We start from the begining the size or bounds of the sliding window and we start the iterations as well, as the sum exceeds the sliding window comes into action and rejects the first element of window in order to increase the sum or some other aggregatable quantity.
+
+In one of the article over GFG i came to find the explanation and therefore the concept to this as well. What we try to do here that we tend to maintain the sum of the subarray less than k or greater than k and for that to happen we tend to reject the first element of this window and add the next element as well.
+
+There are two cases possible while we are going or incrementing our right side of window over the array :
+
+
+1. Sum is less than k :
+   Action : Increase window size so that we may increase our sum somewhat more.
+   The number of subarrays at this stage that are having the sum smaller than k are, (end - start) since we can take exatly that much number of starting points from our current window.
+   
+   if (window_sum < k) :
+       end++
+       if (end >= start)
+           count += (end - start)
+       if (end < n)
+           sum += a[end]     
+
+2. Sum is greater than k:
+   Action : Decrease the window size so that sum within that window may be mainatained less than this quantity k.
+
+   At this point we don't count the subarrays since we have already included the things / subarrays for that in previous legit step.
+ 
+   if (window_sum >= k):
+       window_sum -= a[start]
+       start++
+
+
+       
