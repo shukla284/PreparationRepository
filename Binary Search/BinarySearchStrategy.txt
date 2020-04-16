@@ -1,0 +1,120 @@
+Binary Search Strategy and Study
+
+The binary search is one of the most intuitive things that is usually observed in our daily life and its importance and signifcance is none left by Computer Science as well. The binary search is one of the strategies in the branches of Computer Science that tremendously improves the problem solving strategies through its working.
+
+Binary search requires intuition that's true but in manhy scnearios it is somewhat less intuitive to come up with the incorporation of approach that employs the concept of Binary search in it. Binary Search on its own requires the ordering in the given sequence or search space as well.
+
+There must be a pattern or regularity on the basis of which we can reduce the seach space as we move forth into the search space. With each iteration we reduce the half of the search space. Either we move to the left or right of the given sequence or moving less than a given value or more than a given value in our search space as well.
+
+The utility of binary search can be understood by the fact that it can be utilised in mathematics, book reading even, searching a book in library; in order to be tuned with the binary search we need to be honed in a very obvious skill and that is, asking the correct question to ourselves before we arrive to a decision. We mark the values in the search space as being valuable or invaluable for us.
+
+According to Leetcode one of the things that are notable for the Binary Serach is  :
+"Binary Search can take many alternate forms and might not always be as straight forward as searching for a specific value. Sometimes you will have to apply a specific condition or rule to determine which side (left or right) to search next."
+
+In each iteration we change or maintain our direction based upon the conditions posed by the mid element in the search space we think of. Some of the problems that uses the binary search are like : 
+
+1. Searching the element in sorted sequence.
+2. Checking the number being perfect square without square-rooting.
+3. Finding the peak element.
+4. Finding the lower bound.
+5. Finding the upper bound.
+6. Finding the exact square root of a number upto certain percision.
+7. Finding the minimum element in rotated array.
+8. Finding the maximum element in mountain array.
+
+
+1. Searching  the element in the sorted sequence: This is one of the applications of the Binary Search in which there's dierect and easy implementation of it using the simple comparison and direct answer.
+
+The pseudocode can be written as :
+
+function BinarySearch(A, x) :
+    
+    left = 0, right = A.length() - 1
+    while left <= right :
+        mid = left + (right - left) / 2;
+
+        if a[mid] == x:
+            return true
+
+        else if a[mid] < x :
+            left = mid + 1
+
+        else :
+            right = mid - 1
+
+    return -1        
+
+
+The things are such that they are using the left and right pointer which define the bounds of the search space for the further iteration. In each of the iteration we will be in one of the conditions :
+
+
+1. Getting the element.
+2. Reducing the right boundary before mid
+3. Extending the left boundary after mid
+
+The decision depends upon the ordering of the elements and our intuition to change the direction. Consider if there is increasing order then if mid is smaller than our target then we need to search in the ahead direction rather than left half of the sequence while with the same problem the decreasing sequence will reverse the order of the boundaries as well.
+
+
+2. Checking the number being perfect square without square rooting :
+We will try to take the things in the similiar way as that in case of the previous problem the only difference being,that this time there is no sequence given out here. 
+
+There are discrete values upon which we need to operate. The values between 0 and X; can be used as the initial search space bounds. 
+
+Following pseudocode is depiction of the same:
+
+function IsPerfectSquare(A):
+    left = 0, right = A
+
+    while left <= right :
+
+        mid = left + (right - left) / 2
+
+        if mid**2 == A :
+            return true
+
+        else if mid**2  < A :
+            left = mid + 1
+
+        else:
+            right = mid - 1
+
+    return -1                 
+
+The logics behined this kind of questions where some condtions have to be staisfied in the discrete/ continous search space. Then this is one of the options that are worth considering. 
+
+3. Finding the peak element: This is somewhat another kind of question in which there is problem of figuring out that ordering that is going to be displayed within the sequence or array. The thing is that we need to figure out the commonness or the property that is our requisite in order to find in the given sequence. 
+
+Here the common property being followed and that is required depends upon what question do we ask ourselves for all the elements  in the  the mountain array. The mountain array requires the property that initially the elements are increasing and then decreasing. In order to find the largest element in which the property of the increase is displayed. 
+
+There is always an increasing point in all the elements until the maximum element comes and therefater they starts decreasing. Therefore our question must be :
+
+
+
+"Which element is greater than its previous element?"
+This such question will be marking the elements in the sequence either being valuable for us or invaluable for us. And if that happens then binary search is one of the things which can do our tasks at much less cost.
+
+We now have the task to find the element with the maximum index that is showing that particular property. 
+
+Following pseudocode is the depiction of such algorithm.
+
+function MaximumElementMountainArray(A):
+    left = 0, right = A.length() - 1, ans = -1
+
+    while left <= right :
+        
+        mid = left + (right - left) / 2
+
+        if a[mid] >= a[mid - 1] || mid == 0 :
+            ans = mid
+            left = mid + 1
+
+        else:
+            right = mid - 1
+
+    return ans         
+
+The things are somewhat different in this code which makes it capable to make it through getting the most obvious and maximum answer for our problem. 
+
+This similar thing will be also be reflected in the upper bound and lower bound, which is also the application of the binary search.
+
+4. Finding the lower bound: This is the problem where we need to find the     
